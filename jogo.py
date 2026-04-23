@@ -1,26 +1,31 @@
 import random
-numero_secreto= random.randint(1,10)
-tentativas = 5
 
-print ("Bem vindos ao jogo de adivinhação!")
-print ("Tente adivinhar o número entre 1 e 10")
-print ("Você tem até 5 tentativas")
+nivel = 1
 
-while tentativas > 0:
-    chute = int(input("digite um número:"))
+while True:
+    print(f"\nNível {nivel}")
+    limite = nivel * 10
+    numero_secreto = random.randint(1, limite)
+    tentativas = 5
 
-    if chute == numero_secreto:
-        print("acertou!!")
-        break 
+    print(f"Tente adivinhar o número entre 1 e {limite}")
+    print("Você tem até 5 tentativas")
 
-    elif chute > numero_secreto:
-        print("muito alto!")
-    else:
-     print("muito baixo!")
+    while tentativas > 0:
+        palpite = int(input("Digite um número: "))
 
-      
-    tentativas -= 1
-    print(f"você ainda tem:{tentativas}")
+        if palpite < numero_secreto:
+            print("Muito baixo!")
+        elif palpite > numero_secreto:
+            print("Muito alto!")
+        else:
+            print("Acertou!! 🎉")
+            nivel += 1
+            break
 
-if tentativas == 0:
-   print (f"você perdeu! o número era  {numero_secreto}")
+        tentativas -= 1
+        print(f"Você ainda tem: {tentativas}")
+
+    if tentativas == 0:
+        print("Você perdeu 😢")
+        break
